@@ -8,7 +8,8 @@ function saveBookmark(e) {
 	if (!validateForm(siteName, siteURL)) {
 		return false;
 	}
-	
+
+
 	var bookmark = {
 		name : siteName,
 		url : siteURL
@@ -76,13 +77,29 @@ function fetchBookmarks() {
 
 }
 
-function validateForm(siteName, siteURL) {
-	// check if sitename or siteUrl is already in bookmarks
-	// check if url is valid
-	if (!siteName || !siteURL) {
-		alert('Please fill in the form')
-		return false;
-	}
 
-	return true;
+
+// var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+// var regex = new RegExp(expression);
+// var t = 'www.google.com';
+
+// if (t.match(regex)) {
+//   alert("Successful match");
+// } else {
+//   alert("No match"); 
+// }
+
+function validateForm(siteName, siteURL) {
+	if (!siteName || !siteURL) {
+		alert('Please fill the form')
+		return false
+	}
+	var expression = /[-a-zA-Z0-9@:%_\+.~#?&//=]{2,256}\.[a-z]{2,4}\b(\/[-a-zA-Z0-9@:%_\+.~#?&//=]*)?/gi;
+	var regex = new RegExp(expression);
+
+	if (!siteURL.match(regex)) {
+		alert('Please use a valid URL');
+		return false
+	}
+	return true
 }
